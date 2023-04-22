@@ -1,0 +1,32 @@
+<div>
+	<div *ngIf="!loggedIn" class="m-5 text-center">
+		<div>
+			<h1 class="display-1">Welcome to Chess Service!</h1>
+			<h2 class="display-4">To get started, <a style="text-decoration: none !important;"
+													 routerLink="/signup"> <span
+					class="fw-bold">create an account</span></a>
+				or <a style="text-decoration: none !important;" routerLink="/login"><span class="fw-bold">log in</span></a>.
+			</h2>
+		</div>
+	</div>
+	<div *ngIf="loggedIn" class="m-5 text-center">
+		<div>
+			<h1 class="display-1">Hello <span class="fw-bold">{{username}}</span></h1>
+		</div>
+		<div class="">
+			<h3 class="display-3">Join the tournament below ...</h3>
+			<app-tournament-list [showCompletedTournaments]="false"></app-tournament-list>
+			<h3 class="display-3">... or invite a friend to play in your <a
+					style="text-decoration: none !important;"
+					[routerLink]="['/profile',username]"> <span
+					class="fw-bold">profile</span></a>.</h3>
+		</div>
+		<br/>
+		<div class="">
+			<h3 class="display-3">Previous tournaments</h3>
+			<app-tournament-list [showCompletedTournaments]="true"></app-tournament-list>
+		</div>
+	</div>
+</div>
+
+

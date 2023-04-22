@@ -1,0 +1,84 @@
+<div>
+	<div style="padding-left: 10%;" *ngIf="!gameModel.ended&&!gameError&&gameModel.accepted">
+
+		<div class="w-100">
+			<div style="float: left;">
+				<div class="text-center">
+					<app-board (move)="makeMove($event)" [player]="player" [board]="game.getBoard()"></app-board>
+				</div>
+			</div>
+			<div style="float: left;">
+				<p class="fs-3">Game between <span class="fw-bold">{{gameModel.host}}</span> and <span
+						class="fw-bold">{{gameModel.player}}</span></p>
+				<p class="fs-4">White: <span class="fw-bold">{{gameModel.host}}</span> Black: <span
+						class="fw-bold">{{gameModel.player}}</span></p>
+				<p class="fs-4">Current turn: <span class="fw-bold text-success">{{currentTurn}}</span></p>
+				<button style="margin-right: 5px;" [disabled]="winner" (click)="onDraw()"
+						class="btn btn-warning">
+					Offer a draw
+				</button>
+				<button [disabled]="winner" (click)="openGiveUpModal(confirmGiveUpModal)"
+						class="btn btn-danger">
+					Give up
+				</button>
+
+				<!--				<button (click)="onNewGame()" class="btn btn-primary">New game</button>-->
+			</div>
+		</div>
+	</div>
+	<div *ngIf="gameModel.ended||gameError||!gameModel.accepted" class="text-center m-5">
+		<h1 class="display-1">No ongoing game, to play invite a friend in your <a
+				style="text-decoration: none !important;"
+				[routerLink]="['/profile',username]"> <span
+				class="fw-bold">profile</span></a>, or wait for the invitation to be accepted</h1>
+
+		<button (click)="refreshPage()" style="margin-top: 10%;" class="btn-lg btn-primary fs-1"><i
+				class="bi bi-arrow-clockwise"></i></button>
+	</div>
+</div>
+
+<ng-template #winModal>
+	<div class="text-center">
+		<div>
+			<h4 class="display-4"> You win!</h4>
+		</div>
+		<div class="m-2">
+			<button (click)="handleModalClose()" class="btn-lg btn-primary">Close</button>
+		</div>
+	</div>
+</ng-template>
+
+<ng-template #drawInfoModal>
+	<div class="text-center">
+		<div>
+			<h4 class="display-4"> Draw</h4>
+		</div>
+		<div class="m-2">
+			<button (click)="handleModalClose()" class="btn-lg btn-primary">Close</button>
+		</div>
+	</div>
+</ng-template>
+
+<ng-template #confirmDrawModal>
+	<div class="text-center">
+		<div>
+			<h4 class="display-4"> Do you want to accept draw?</h4>
+		</div>
+		<div class="m-2">
+			<button (click)="handleDrawYes()" style="margin-right: 20px;" class="btn-lg btn-primary">Yes</button>
+			<button (click)="handleModalClose()" class="btn-lg btn-primary">No</button>
+		</div>
+	</div>
+</ng-template>
+
+<ng-template #confirmGiveUpModal>
+	<div class="text-center">
+		<div>
+			<h4 class="display-4"> Do you want to give up?</h4>
+		</div>
+		<div class="m-2">
+			<button (click)="handleModalYes()" style="margin-right: 20px;" class="btn-lg btn-primary">Yes</button>
+			<button (click)="handleModalClose()" class="btn-lg btn-primary">No</button>
+		</div>
+	</div>
+</ng-template>

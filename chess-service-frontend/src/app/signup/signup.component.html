@@ -1,0 +1,23 @@
+<div class="m-5">
+	<div class="center">
+		<h1 style="text-align: center;">Create Your Account</h1>
+	</div>
+	<div class="margin-btm center">
+		<label for="username">Username</label>
+		<input [(ngModel)]="username" id="username" type="text" class="form-control" placeholder="Enter username">
+	</div>
+	<div class="margin-btm center">
+		<label for="email">Email address</label>
+		<input [(ngModel)]="email" id="email" type="text" class="form-control" placeholder="Enter email">
+	</div>
+	<div class="margin-btm center">
+		<label for="password">Password</label>
+		<input [(ngModel)]="password" id="password" type="password" class="form-control" placeholder="Enter password">
+	</div>
+	<div class="buttons center">
+		<p class="error" *ngIf="userAlreadyExists">{{message}}</p>
+		<p class="error" *ngIf="emptyField">{{message}}</p>
+		<button (click)="onSignup()" style="width: 100%;" type="button" class="btn btn-primary">Sign up</button>
+	</div>
+</div>
+
