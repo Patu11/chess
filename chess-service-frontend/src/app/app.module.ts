@@ -28,51 +28,55 @@ import {GameComponent} from './game/game.component';
 import {InvitesComponent} from './invites/invites.component';
 import {TournamentListComponent} from './tournament-list/tournament-list.component';
 import {AdminComponent} from './admin/admin.component';
-import { TournamentComponent } from './tournament/tournament.component';
-import { CreateTournamentComponent } from './create-tournament/create-tournament.component';
-import { TournamentPageComponent } from './tournament-page/tournament-page.component';
-import { TournamentGameListComponent } from './tournament-game-list/tournament-game-list.component';
-import { TournamentGameComponent } from './tournament-game/tournament-game.component';
+import {TournamentComponent} from './tournament/tournament.component';
+import {CreateTournamentComponent} from './create-tournament/create-tournament.component';
+import {TournamentPageComponent} from './tournament-page/tournament-page.component';
+import {TournamentGameListComponent} from './tournament-game-list/tournament-game-list.component';
+import {TournamentGameComponent} from './tournament-game/tournament-game.component';
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		MainComponent,
-		LoginComponent,
-		SignupComponent,
-		SquareComponent,
-		BoardComponent,
-		ProfileComponent,
-		CommentComponent,
-		CommentListComponent,
-		ProfileCardComponent,
-		FriendListComponent,
-		ModifyAccountComponent,
-		UserListComponent,
-		FriendInvitesComponent,
-		HomePageComponent,
-		NavbarComponent,
-		GameComponent,
-		InvitesComponent,
-		TournamentListComponent,
-		AdminComponent,
-  TournamentComponent,
-  CreateTournamentComponent,
-  TournamentPageComponent,
-  TournamentGameListComponent,
-  TournamentGameComponent
-	],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		FormsModule,
-		HttpClientModule,
-		BrowserAnimationsModule,
-		ModalModule.forRoot(),
-		BsDropdownModule.forRoot(),
-	],
-	providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
-	bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    MainComponent,
+    LoginComponent,
+    SignupComponent,
+    SquareComponent,
+    BoardComponent,
+    ProfileComponent,
+    CommentComponent,
+    CommentListComponent,
+    ProfileCardComponent,
+    FriendListComponent,
+    ModifyAccountComponent,
+    UserListComponent,
+    FriendInvitesComponent,
+    HomePageComponent,
+    NavbarComponent,
+    GameComponent,
+    InvitesComponent,
+    TournamentListComponent,
+    AdminComponent,
+    TournamentComponent,
+    CreateTournamentComponent,
+    TournamentPageComponent,
+    TournamentGameListComponent,
+    TournamentGameComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ModalModule.forRoot(),
+    BsDropdownModule.forRoot(),
+  ],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}, {
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+  }],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
